@@ -75,3 +75,9 @@ export const MOCK_NEW_CHILD = {
     fullname: 'Moje Nové Mock Dítě Name',
     class: '1g',
 };
+
+export const MOCK_NEW_CLASS = {
+    parent: 'ERROR_MOCK_NO_CLASS_ID',
+    fullname: 'Moje Nové Mock Dítě Name',
+    class: '1g',
+};
