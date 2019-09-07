@@ -1,26 +1,26 @@
 import * as request from 'supertest';
 import { SuperTest, Test } from 'supertest';
 import { app } from '../src/app';
-import {
-    TEST_CHANGE_NEW_PASSWORD,
-    TEST_PARENT_NONEXISTING_PASSWORD,
-    TEST_PARENT_PASSWORD,
-    TEST_PARENT_USERNAME,
-} from '../src/config';
 import { createAuthenticatedRequest } from './testUtils/createAuthenticatedRequest';
+import {
+    MOCK_CHANGE_NEW_PASSWORD,
+    MOCK_PARENT_NONEXISTING_PASSWORD,
+    MOCK_PARENT_PASSWORD,
+    MOCK_PARENT_USERNAME,
+} from '../src/mockData';
 
 export default describe('changePassword route', () => {
     it('should not try to change password if user is not logged in', () =>
         request(app)
             .post(`/user/change-password`)
-            .send({ username: TEST_PARENT_PASSWORD, password: TEST_CHANGE_NEW_PASSWORD })
+            .send({ username: MOCK_PARENT_PASSWORD, password: MOCK_CHANGE_NEW_PASSWORD })
             .expect(401));
 
     it('should not change password if original password was wrong', () =>
         createAuthenticatedRequest((req: SuperTest<Test>) => {
             req
                 .post(`/user/change-password`)
-                .send({ original: TEST_PARENT_NONEXISTING_PASSWORD, new: TEST_CHANGE_NEW_PASSWORD })
+                .send({ original: MOCK_PARENT_NONEXISTING_PASSWORD, new: MOCK_CHANGE_NEW_PASSWORD })
                 .expect(403);
         }));
 
@@ -28,12 +28,12 @@ export default describe('changePassword route', () => {
         createAuthenticatedRequest((req: SuperTest<Test>) => {
             req
                 .post(`/user/change-password`)
-                .send({ original: TEST_PARENT_NONEXISTING_PASSWORD, new: TEST_CHANGE_NEW_PASSWORD })
+                .send({ original: MOCK_PARENT_NONEXISTING_PASSWORD, new: MOCK_CHANGE_NEW_PASSWORD })
                 .expect(200)
                 .end(() => {
                     req
                         .post(`/user/login`)
-                        .send({ username: TEST_PARENT_USERNAME, password: TEST_CHANGE_NEW_PASSWORD })
+                        .send({ username: MOCK_PARENT_USERNAME, password: MOCK_CHANGE_NEW_PASSWORD })
                         .expect(200);
                 });
         }));

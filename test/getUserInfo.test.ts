@@ -1,8 +1,8 @@
 import * as request from 'supertest';
 import { SuperTest, Test } from 'supertest';
 import { app } from '../src/app';
-import { TEST_PARENT_EMAIL, TEST_PARENT_FULLNAME, TEST_PARENT_KIDS } from '../src/config';
 import { createAuthenticatedRequest } from './testUtils/createAuthenticatedRequest';
+import { MOCK_PARENT_EMAIL, MOCK_PARENT_FULLNAME, MOCK_PARENT_KIDS } from '../src/mockData';
 
 export default describe('getUserInfo route', () => {
     it('should not get user info because of unauthorized', () =>
@@ -16,9 +16,9 @@ export default describe('getUserInfo route', () => {
                 .get(`/user`)
                 .expect(200)
                 .expect({
-                    fullname: TEST_PARENT_FULLNAME,
-                    email: TEST_PARENT_EMAIL,
-                    kids: TEST_PARENT_KIDS,
+                    fullname: MOCK_PARENT_FULLNAME,
+                    email: MOCK_PARENT_EMAIL,
+                    kids: MOCK_PARENT_KIDS,
                 });
         }));
 });
