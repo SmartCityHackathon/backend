@@ -33,3 +33,21 @@ export const MOCK_PARENT_KIDS_CALENDAR_2019_09 = [
 export const MOCK_PARENT_NONEXISTING_USERNAME = 'parent_kadibudka';
 export const MOCK_PARENT_NONEXISTING_PASSWORD = 'parent_passw0rd!';
 export const MOCK_CHANGE_NEW_PASSWORD = 'parent_new_passw0rd!';
+
+export const MOCK_TEACHER_USERNAME = 'parent_kadibudka';
+export const MOCK_TEACHER_PASSWORD = 'parent_passw0rd!';
+
+export const MOCK_ADMIN_USERNAME = 'admin_kadibudka';
+export const MOCK_ADMIN_PASSWORD = 'admin_passw0rd!';
+
+export const MOCK_NEW_TEACHER_DATA = {
+    fullname: 'Moje malá učitelka',
+    email: 'ucitelka@klubucitelu.cz',
+    type: 'teacher',
+};
+export const MOCK_NEW_PARENT_DATA = {
+    fullname: 'Anina Čudáková',
+    email: 'cudakova@sitmp.cz',
+    type: 'parent',
+    kids: [],
+};

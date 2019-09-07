@@ -19,6 +19,7 @@ export default describe('getUserInfo route', () => {
                     fullname: MOCK_PARENT_FULLNAME,
                     email: MOCK_PARENT_EMAIL,
                     kids: MOCK_PARENT_KIDS,
+                    type: 'parent',
                 });
         }));
 });
