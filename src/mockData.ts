@@ -4,9 +4,12 @@ export const MOCK_PARENT_FULLNAME = 'parent_kadibudka';
 export const MOCK_PARENT_EMAIL = 'parent_kadibudkas@email.cz';
 export const MOCK_PARENT_KIDS = ['Matěj Obecný', 'Eliška'];
 
+export const MOCK_FIRST_CHILD_ID = '1f9a9-46a8c';
+export const MOCK_SECOND_CHILD_ID = 'ac5e2-c4a8f';
+
 function generateDays(pseudoSeed: number) {
     const days = [];
-    for (let i = 0; i <= 30; i++) {
+    for (let i = 1; i <= 30; i++) {
         days.push({
             date: `2019-09-${i.toString().padStart(2, '0')}`,
             value: (i % pseudoSeed === 0),
@@ -15,13 +18,15 @@ function generateDays(pseudoSeed: number) {
     return days;
 }
 
-export const TEST_PARENT_KIDS_CALENDAR_2019_09 = [
+export const MOCK_PARENT_KIDS_CALENDAR_2019_09 = [
     {
         fullname: 'Matěj Obecný',
+        childId: MOCK_FIRST_CHILD_ID,
         days: generateDays(3),
     },
     {
         fullname: 'Eliška',
+        childId: MOCK_SECOND_CHILD_ID,
         days: generateDays(4),
     },
 ];
