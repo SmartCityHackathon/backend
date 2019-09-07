@@ -4,7 +4,7 @@ import { app } from '../src/app';
 import { createAuthenticatedRequest } from './testUtils/createAuthenticatedRequest';
 import { MOCK_PARENT_KIDS_CALENDAR_2019_09 } from '../src/mockData';
 
-export default describe('getUserInfo route', () => {
+export default describe('getCalendarGoing route', () => {
     it('should not get user calendar because of unauthorized', () =>
         request(app)
             .get(`/calendar/going`)
