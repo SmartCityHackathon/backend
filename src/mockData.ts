@@ -69,3 +69,9 @@ export const MOCK_NEW_PARENT_DATA_EDITED = {
     ...MOCK_NEW_PARENT_DATA,
     ...MOCK_NEW_PARENT_DATA_EDIT_REQUEST,
 };
+
+export const MOCK_NEW_CHILD = {
+    parent: 'ERROR_MOCK_NO_CHILD_ID',
+    fullname: 'Moje Nové Mock Dítě Name',
+    class: '1g',
+};
