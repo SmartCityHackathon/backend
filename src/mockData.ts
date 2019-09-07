@@ -77,7 +77,8 @@ export const MOCK_NEW_CHILD = {
 };
 
 export const MOCK_NEW_CLASS = {
-    parent: 'ERROR_MOCK_NO_CLASS_ID',
-    fullname: 'Moje Nové Mock Dítě Name',
-    class: '1g',
+    fullname: 'My little class of blackies',
+    code: '1g',
 };
+
+export const MOCK_CLASS_ID = 'my-child-id-chill-sds55a';
