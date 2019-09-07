@@ -1,0 +1,51 @@
+{
+  "name": "backend",
+  "version": "0.1.0",
+  "homepage": "https://hejny.github.io/student-dreamers/",
+  "private": false,
+  "scripts": {
+    "start": "npm start server",
+    "prettier": "prettier --config .prettierrc --write \"{src,static}/**/*.{ts,tsx,js,css,html}\" webpack.config.js",
+    "prettier-watch": "onchange \"**/*.{js,ts,tsx,json,css,html}\" -- prettier --config .prettierrc --write \"{{changed}}\"",
+    "server": "ts-node -P ./tsconfig.json -r dotenv/config src/index.ts",
+    "server-watch": "onchange -i \"./src/**/*.{ts,tsx,json}\" -- npm run server",
+    "expose": "lt --port 3000 --subdomain student-dreamers-oriflameServer-v1",
+    "test": "jest --runInBand --setupFiles dotenv/config",
+    "test-watch": "npm run test -- --watch"
+  },
+  "dependencies": {
+    "@types/cors": "^2.8.5",
+    "@types/jest": "^24.0.12",
+    "@types/morgan": "^1.7.35",
+    "axios": "^0.18.0",
+    "body-parse": "^0.1.0",
+    "cors": "^2.8.4",
+    "cross-env": "^5.2.0",
+    "dotenv": "^6.1.0",
+    "express": "^4.16.4",
+    "knex": "^0.15.2",
+    "morgan": "^1.9.1",
+    "mysql": "^2.17.1",
+    "objection": "^1.6.8",
+    "uuid": "^3.3.2",
+    "winston": "^2.4.4"
+  },
+  "devDependencies": {
+    "@types/body-parser": "^1.17.0",
+    "@types/express": "^4.16.0",
+    "@types/knex": "^0.14.26",
+    "@types/node": "^10.12.1",
+    "@types/supertest": "^2.0.7",
+    "@types/uuid": "^3.4.3",
+    "@types/winston": "^2.4.4",
+    "onchange": "^4.1.0",
+    "ts-node": "^7.0.1",
+    "concurrently": "^4.1.0",
+    "gh-pages": "^1.1.0",
+    "jest": "^24.7.1",
+    "prettier": "^1.12.1",
+    "supertest": "^4.0.2",
+    "ts-jest": "^24.0.2",
+    "typescript": "^3.1.4"
+  }
+}
