@@ -14,7 +14,7 @@ export default describe('putUser route', () => {
             .send(MOCK_NEW_TEACHER_DATA)
             .expect(401));
 
-    it('should add new teacher user', () =>
+    it('should add and edit teacher user', () =>
         createAuthenticatedRequestAdmin((req: SuperTest<Test>) => {
             req
                 .put(`/user`)

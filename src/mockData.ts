@@ -51,3 +51,21 @@ export const MOCK_NEW_PARENT_DATA = {
     type: 'parent',
     kids: [],
 };
+
+export const MOCK_NEW_TEACHER_DATA_EDIT_REQUEST = {
+    fullname: 'This Time Large Teacher',
+    email: 'largeteacher@email.cz',
+};
+export const MOCK_NEW_PARENT_DATA_EDIT_REQUEST = {
+    fullname: 'This Time Large Teacher',
+    email: 'largeteacher@email.cz',
+    kids: ['Tonda'],
+};
+export const MOCK_NEW_TEACHER_DATA_EDITED = {
+    ...MOCK_NEW_TEACHER_DATA,
+    ...MOCK_NEW_TEACHER_DATA_EDIT_REQUEST,
+};
+export const MOCK_NEW_PARENT_DATA_EDITED = {
+    ...MOCK_NEW_PARENT_DATA,
+    ...MOCK_NEW_PARENT_DATA_EDIT_REQUEST,
+};
