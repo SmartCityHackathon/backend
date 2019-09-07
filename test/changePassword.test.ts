@@ -9,7 +9,7 @@ import {
 } from '../src/config';
 import { createAuthenticatedRequest } from './testUtils/createAuthenticatedRequest';
 
-export default describe('Login route', () => {
+export default describe('changePassword route', () => {
     it('should not try to change password if user is not logged in', () =>
         request(app)
             .post(`/user/change-password`)
