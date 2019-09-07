@@ -11,7 +11,7 @@ export const app = createApp();
 export function createApp(): express.Express {
     const app = express();
 
-    app.use(json({ limit: '50mb' }));
+    app.use(json({ limit: '1mb' }));
     app.use(cors());
     app.use(expressLogger());
     app.set('json spaces', 4);
