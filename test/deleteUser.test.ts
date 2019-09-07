@@ -21,11 +21,13 @@ export default describe('DeleteUser route', () => {
                 .set('Authorization', token)
                 .expect(200)
                 .end((err, res) => {
+                    if (err) throw err;
                     req
                         .delete(`/user/${res.body.userId}`)
                         .set('Authorization', token)
                         .expect(200)
                         .end((err, res) => {
+                            if (err) throw err;
                             req
                                 .get(`/user/${res.body.userId}`)
                                 .set('Authorization', token)
@@ -42,6 +44,7 @@ export default describe('DeleteUser route', () => {
                 .set('Authorization', token)
                 .expect(200)
                 .end((err, res) => {
+                    if (err) throw err;
                     createAuthenticatedRequestTeacher(request(app), (req: SuperTest<Test>, token: string) => {
                         req
                             .delete(`/user/${res.body.userId}`)
@@ -59,11 +62,13 @@ export default describe('DeleteUser route', () => {
                 .set('Authorization', token)
                 .expect(200)
                 .end((err, res) => {
+                    if (err) throw err;
                     req
                         .delete(`/user/${res.body.userId}`)
                         .set('Authorization', token)
                         .expect(200)
                         .end((err, res) => {
+                            if (err) throw err;
                             req
                                 .get(`/user/${res.body.userId}`)
                                 .set('Authorization', token)

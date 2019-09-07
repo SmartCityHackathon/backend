@@ -32,7 +32,8 @@ export default describe('changePassword route', () => {
                 .send({ original: MOCK_PARENT_NONEXISTING_PASSWORD, new: MOCK_CHANGE_NEW_PASSWORD })
                 .set('Authorization', token)
                 .expect(200)
-                .end(() => {
+                .end((err: any) => {
+                    if (err) throw err;
                     req
                         .post(`/user/login`)
                         .send({ username: MOCK_PARENT_USERNAME, password: MOCK_CHANGE_NEW_PASSWORD })

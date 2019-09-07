@@ -21,7 +21,8 @@ export default describe('postCalendarGoing route', () => {
                 .send(sendData)
                 .set('Authorization', token)
                 .expect(200)
-                .end(() => {
+                .end((err: any) => {
+                    if (err) throw err;
                     req
                         .get(`/calendar/going`)
                         .set('Authorization', token)

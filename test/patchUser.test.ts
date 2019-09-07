@@ -47,12 +47,14 @@ export default describe('PatchUser route', () => {
                 .set('Authorization', token)
                 .expect(200)
                 .end((err, res) => {
+                    if (err) throw err;
                     req
                         .patch(`/user/${res.body.userId}`)
                         .send(MOCK_NEW_TEACHER_DATA_EDIT_REQUEST)
                         .set('Authorization', token)
                         .expect(200)
                         .end((err, res) => {
+                            if (err) throw err;
                             req
                                 .get(`/user/${res.body.userId}`)
                                 .set('Authorization', token)
@@ -69,12 +71,14 @@ export default describe('PatchUser route', () => {
                 .set('Authorization', token)
                 .expect(200)
                 .end((err, res) => {
+                    if (err) throw err;
                     req
                         .patch(`/user/${res.body.userId}`)
                         .send(MOCK_NEW_PARENT_DATA_EDIT_REQUEST)
                         .set('Authorization', token)
                         .expect(200)
                         .end((err, res) => {
+                            if (err) throw err;
                             req
                                 .get(`/user/${res.body.userId}`)
                                 .set('Authorization', token)

@@ -22,6 +22,7 @@ export default describe('putUser route', () => {
                 .set('Authorization', token)
                 .expect(200)
                 .end((err, res) => {
+                    if (err) throw err;
                     req
                         .get(`/user/${res.body.userId}`)
                         .set('Authorization', token)
@@ -47,6 +48,7 @@ export default describe('putUser route', () => {
                 .set('Authorization', token)
                 .expect(200)
                 .end((err, res) => {
+                    if (err) throw err;
                     req
                         .get(`/user/${res.body.userId}`)
                         .set('Authorization', token)
