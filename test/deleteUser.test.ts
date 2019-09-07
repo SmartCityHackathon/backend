@@ -29,7 +29,7 @@ export default describe('DeleteUser route', () => {
                         .delete(`/user/${res.body.userId}`)
                         .set('Authorization', token)
                         .expect(200)
-                        .end((err, res) => {
+                        .end((err) => {
                             if (err) {
                                 done(err);
                                 return;

@@ -37,8 +37,8 @@ export default describe('PutChildren route', () => {
                                 .get(`/user/${res.body.userId}`)
                                 .set('Authorization', token)
                                 .expect(200)
-                                .expect(({ body }) =>
-                                    !!body.kids.filter((kid: any) => kid == MOCK_NEW_CHILD))
+                                .expect((resp) => !!resp.body.kids.filter(
+                                    (kid: any) => kid == { ...MOCK_NEW_CHILD, childId: body.childId }))
                                 .end(done);
                         });
                 });
