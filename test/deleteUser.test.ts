@@ -13,7 +13,7 @@ export default describe('DeleteUser route', () => {
             .delete(`/user/${'SomeUserId'}`)
             .expect(401));
 
-    it('should delete new teacher user', () =>
+    it('should delete new teacher user', (done) =>
         createAuthenticatedRequestAdmin(request(app), (req: SuperTest<Test>, token: string) => {
             req
                 .put(`/user`)
@@ -21,22 +21,29 @@ export default describe('DeleteUser route', () => {
                 .set('Authorization', token)
                 .expect(200)
                 .end((err, res) => {
-                    if (err) throw err;
+                    if (err) {
+                        done(err);
+                        return;
+                    }
                     req
                         .delete(`/user/${res.body.userId}`)
                         .set('Authorization', token)
                         .expect(200)
                         .end((err, res) => {
-                            if (err) throw err;
+                            if (err) {
+                                done(err);
+                                return;
+                            }
                             req
                                 .get(`/user/${res.body.userId}`)
                                 .set('Authorization', token)
-                                .expect(404);
+                                .expect(404)
+                                .end(done);
                         });
                 });
         }));
 
-    it('should not delete user, because teacher cant delete teacher', () =>
+    it('should not delete user, because teacher cant delete teacher', (done) =>
         createAuthenticatedRequestAdmin(request(app), (req: SuperTest<Test>, token: string) => {
             req
                 .put(`/user`)
@@ -44,17 +51,21 @@ export default describe('DeleteUser route', () => {
                 .set('Authorization', token)
                 .expect(200)
                 .end((err, res) => {
-                    if (err) throw err;
+                    if (err) {
+                        done(err);
+                        return;
+                    }
                     createAuthenticatedRequestTeacher(request(app), (req: SuperTest<Test>, token: string) => {
                         req
                             .delete(`/user/${res.body.userId}`)
                             .set('Authorization', token)
-                            .expect(403);
+                            .expect(403)
+                            .end(done);
                     });
                 });
         }));
 
-    it('should delete new parent user', () =>
+    it('should delete new parent user', (done) =>
         createAuthenticatedRequestAdmin(request(app), (req: SuperTest<Test>, token: string) => {
             req
                 .put(`/user`)
@@ -62,17 +73,24 @@ export default describe('DeleteUser route', () => {
                 .set('Authorization', token)
                 .expect(200)
                 .end((err, res) => {
-                    if (err) throw err;
+                    if (err) {
+                        done(err);
+                        return;
+                    }
                     req
                         .delete(`/user/${res.body.userId}`)
                         .set('Authorization', token)
                         .expect(200)
                         .end((err, res) => {
-                            if (err) throw err;
+                            if (err) {
+                                done(err);
+                                return;
+                            }
                             req
                                 .get(`/user/${res.body.userId}`)
                                 .set('Authorization', token)
-                                .expect(404);
+                                .expect(404)
+                                .end(done);
                         });
                 });
         }));

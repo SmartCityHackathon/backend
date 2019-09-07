@@ -10,7 +10,7 @@ export default describe('getCalendarGoing route', () => {
             .get(`/calendar/going`)
             .expect(401));
 
-    it('should get user calendar going info', () =>
+    it('should get user calendar going info', (done) =>
         createAuthenticatedRequest(request(app), (req: SuperTest<Test>, token: string) => {
             req
                 .get(`/calendar/going`)
@@ -18,6 +18,7 @@ export default describe('getCalendarGoing route', () => {
                 .expect(200)
                 .expect({
                     kids: MOCK_PARENT_KIDS_CALENDAR_2019_09,
-                });
+                })
+                .end(done);
         }));
 });

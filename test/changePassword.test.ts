@@ -16,16 +16,17 @@ export default describe('changePassword route', () => {
             .send({ username: MOCK_PARENT_PASSWORD, password: MOCK_CHANGE_NEW_PASSWORD })
             .expect(401));
 
-    it('should not change password if original password was wrong', () =>
+    it('should not change password if original password was wrong', (done) =>
         createAuthenticatedRequest(request(app), (req: SuperTest<Test>, token: string) => {
             req
                 .post(`/user/change-password`)
-                .set('Authorization', token)
                 .send({ original: MOCK_PARENT_NONEXISTING_PASSWORD, new: MOCK_CHANGE_NEW_PASSWORD })
-                .expect(403);
+                .set('Authorization', token)
+                .expect(403)
+                .end(done);
         }));
 
-    it('should change password', () =>
+    it('should change password', (done) =>
         createAuthenticatedRequest(request(app), (req: SuperTest<Test>, token: string) => {
             req
                 .post(`/user/change-password`)
@@ -33,11 +34,15 @@ export default describe('changePassword route', () => {
                 .set('Authorization', token)
                 .expect(200)
                 .end((err: any) => {
-                    if (err) throw err;
+                    if (err) {
+                        done(err);
+                        return;
+                    }
                     req
                         .post(`/user/login`)
                         .send({ username: MOCK_PARENT_USERNAME, password: MOCK_CHANGE_NEW_PASSWORD })
-                        .expect(200);
+                        .expect(200)
+                        .end(done);
                 });
         }));
 });

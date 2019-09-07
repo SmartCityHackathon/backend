@@ -21,6 +21,8 @@ export function createApp(): express.Express {
     app.get(['/', '/about'], aboutRouteHandler);
 
     app.get('/ahoj', ahojRouteHandler);
+    // app.post('/user/login', testTokenHandler);
+    // app.post('/user/change-password', ahojRouteHandler);
 
     return app;
 }

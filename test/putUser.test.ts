@@ -14,7 +14,7 @@ export default describe('putUser route', () => {
             .send(MOCK_NEW_TEACHER_DATA)
             .expect(401));
 
-    it('should add and edit teacher user', () =>
+    it('should add and edit teacher user', (done) =>
         createAuthenticatedRequestAdmin(request(app), (req: SuperTest<Test>, token: string) => {
             req
                 .put(`/user`)
@@ -22,25 +22,30 @@ export default describe('putUser route', () => {
                 .set('Authorization', token)
                 .expect(200)
                 .end((err, res) => {
-                    if (err) throw err;
+                    if (err) {
+                        done(err);
+                        return;
+                    }
                     req
                         .get(`/user/${res.body.userId}`)
                         .set('Authorization', token)
                         .expect(200)
-                        .expect(MOCK_NEW_TEACHER_DATA);
+                        .expect(MOCK_NEW_TEACHER_DATA)
+                        .end(done);
                 });
         }));
 
-    it('should fail, because teacher cant create another teacher', () =>
+    it('should fail, because teacher cant create another teacher', (done) =>
         createAuthenticatedRequestTeacher(request(app), (req: SuperTest<Test>, token: string) => {
             req
                 .put(`/user`)
                 .set('Authorization', token)
                 .send(MOCK_NEW_TEACHER_DATA)
-                .expect(403);
+                .expect(403)
+                .end(done);
         }));
 
-    it('should add new parent user', () =>
+    it('should add new parent user', (done) =>
         createAuthenticatedRequestTeacher(request(app), (req: SuperTest<Test>, token: string) => {
             req
                 .put(`/user`)
@@ -48,12 +53,16 @@ export default describe('putUser route', () => {
                 .set('Authorization', token)
                 .expect(200)
                 .end((err, res) => {
-                    if (err) throw err;
+                    if (err) {
+                        done(err);
+                        return;
+                    }
                     req
                         .get(`/user/${res.body.userId}`)
                         .set('Authorization', token)
                         .expect(200)
-                        .expect(MOCK_NEW_PARENT_DATA);
+                        .expect(MOCK_NEW_PARENT_DATA)
+                        .end(done);
                 });
         }));
 });

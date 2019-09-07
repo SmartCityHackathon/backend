@@ -10,7 +10,7 @@ export default describe('getUserInfo route', () => {
             .get(`/user`)
             .expect(401));
 
-    it('should get test parent user info', () =>
+    it('should get test parent user info', (done) =>
         createAuthenticatedRequest(request(app), (req: SuperTest<Test>, token: string) => {
             req
                 .get(`/user`)
@@ -21,6 +21,7 @@ export default describe('getUserInfo route', () => {
                     email: MOCK_PARENT_EMAIL,
                     kids: MOCK_PARENT_KIDS,
                     type: 'parent',
-                });
+                })
+                .end(done);
         }));
 });

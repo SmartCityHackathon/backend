@@ -21,7 +21,7 @@ export default describe('PatchUser route', () => {
             .send({})
             .expect(401));
 
-    it('should not delete user, because teacher cant delete teacher', () =>
+    it('should not delete user, because teacher cant delete teacher', (done) =>
         createAuthenticatedRequestAdmin(request(app), (req: SuperTest<Test>, token: string) => {
             req
                 .put(`/user`)
@@ -29,17 +29,22 @@ export default describe('PatchUser route', () => {
                 .set('Authorization', token)
                 .expect(200)
                 .end((err, res) => {
+                    if (err) {
+                        done(err);
+                        return;
+                    }
                     createAuthenticatedRequestTeacher(request(app), (req: SuperTest<Test>, token: string) => {
                         req
                             .put(`/user/${res.body.userId}`)
                             .set('Authorization', token)
-                            .expect(403);
+                            .expect(403)
+                            .end(done);
                     });
                 });
         }));
 
 
-    it('should edit new teacher user', () =>
+    it('should edit new teacher user', (done) =>
         createAuthenticatedRequestAdmin(request(app), (req: SuperTest<Test>, token: string) => {
             req
                 .put(`/user`)
@@ -47,23 +52,30 @@ export default describe('PatchUser route', () => {
                 .set('Authorization', token)
                 .expect(200)
                 .end((err, res) => {
-                    if (err) throw err;
+                    if (err) {
+                        done(err);
+                        return;
+                    }
                     req
                         .patch(`/user/${res.body.userId}`)
                         .send(MOCK_NEW_TEACHER_DATA_EDIT_REQUEST)
                         .set('Authorization', token)
                         .expect(200)
                         .end((err, res) => {
-                            if (err) throw err;
+                            if (err) {
+                                done(err);
+                                return;
+                            }
                             req
                                 .get(`/user/${res.body.userId}`)
                                 .set('Authorization', token)
-                                .expect(MOCK_NEW_TEACHER_DATA_EDITED);
+                                .expect(MOCK_NEW_TEACHER_DATA_EDITED)
+                                .end(done);
                         });
                 });
         }));
 
-    it('should edit new parent user', () =>
+    it('should edit new parent user', (done) =>
         createAuthenticatedRequestTeacher(request(app), (req: SuperTest<Test>, token: string) => {
             req
                 .put(`/user`)
@@ -71,18 +83,25 @@ export default describe('PatchUser route', () => {
                 .set('Authorization', token)
                 .expect(200)
                 .end((err, res) => {
-                    if (err) throw err;
+                    if (err) {
+                        done(err);
+                        return;
+                    }
                     req
                         .patch(`/user/${res.body.userId}`)
                         .send(MOCK_NEW_PARENT_DATA_EDIT_REQUEST)
                         .set('Authorization', token)
                         .expect(200)
                         .end((err, res) => {
-                            if (err) throw err;
+                            if (err) {
+                                done(err);
+                                return;
+                            }
                             req
                                 .get(`/user/${res.body.userId}`)
                                 .set('Authorization', token)
-                                .expect(MOCK_NEW_PARENT_DATA_EDITED);
+                                .expect(MOCK_NEW_PARENT_DATA_EDITED)
+                                .end(done);
                         });
                 });
         }));
