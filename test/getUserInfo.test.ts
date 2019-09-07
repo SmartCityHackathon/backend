@@ -11,9 +11,10 @@ export default describe('getUserInfo route', () => {
             .expect(401));
 
     it('should get test parent user info', () =>
-        createAuthenticatedRequest((req: SuperTest<Test>) => {
+        createAuthenticatedRequest(request(app), (req: SuperTest<Test>, token: string) => {
             req
                 .get(`/user`)
+                .set('Authorization', token)
                 .expect(200)
                 .expect({
                     fullname: MOCK_PARENT_FULLNAME,

@@ -17,18 +17,20 @@ export default describe('changePassword route', () => {
             .expect(401));
 
     it('should not change password if original password was wrong', () =>
-        createAuthenticatedRequest((req: SuperTest<Test>) => {
+        createAuthenticatedRequest(request(app), (req: SuperTest<Test>, token: string) => {
             req
                 .post(`/user/change-password`)
+                .set('Authorization', token)
                 .send({ original: MOCK_PARENT_NONEXISTING_PASSWORD, new: MOCK_CHANGE_NEW_PASSWORD })
                 .expect(403);
         }));
 
     it('should change password', () =>
-        createAuthenticatedRequest((req: SuperTest<Test>) => {
+        createAuthenticatedRequest(request(app), (req: SuperTest<Test>, token: string) => {
             req
                 .post(`/user/change-password`)
                 .send({ original: MOCK_PARENT_NONEXISTING_PASSWORD, new: MOCK_CHANGE_NEW_PASSWORD })
+                .set('Authorization', token)
                 .expect(200)
                 .end(() => {
                     req

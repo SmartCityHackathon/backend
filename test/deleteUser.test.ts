@@ -14,51 +14,59 @@ export default describe('DeleteUser route', () => {
             .expect(401));
 
     it('should delete new teacher user', () =>
-        createAuthenticatedRequestAdmin((req: SuperTest<Test>) => {
+        createAuthenticatedRequestAdmin(request(app), (req: SuperTest<Test>, token: string) => {
             req
                 .put(`/user`)
                 .send(MOCK_NEW_TEACHER_DATA)
+                .set('Authorization', token)
                 .expect(200)
                 .end((err, res) => {
                     req
                         .delete(`/user/${res.body.userId}`)
+                        .set('Authorization', token)
                         .expect(200)
                         .end((err, res) => {
                             req
                                 .get(`/user/${res.body.userId}`)
+                                .set('Authorization', token)
                                 .expect(404);
                         });
                 });
         }));
 
     it('should not delete user, because teacher cant delete teacher', () =>
-        createAuthenticatedRequestAdmin((req: SuperTest<Test>) => {
+        createAuthenticatedRequestAdmin(request(app), (req: SuperTest<Test>, token: string) => {
             req
                 .put(`/user`)
                 .send(MOCK_NEW_TEACHER_DATA)
+                .set('Authorization', token)
                 .expect(200)
                 .end((err, res) => {
-                    createAuthenticatedRequestTeacher((req: SuperTest<Test>) => {
+                    createAuthenticatedRequestTeacher(request(app), (req: SuperTest<Test>, token: string) => {
                         req
                             .delete(`/user/${res.body.userId}`)
+                            .set('Authorization', token)
                             .expect(403);
                     });
                 });
         }));
 
     it('should delete new parent user', () =>
-        createAuthenticatedRequestAdmin((req: SuperTest<Test>) => {
+        createAuthenticatedRequestAdmin(request(app), (req: SuperTest<Test>, token: string) => {
             req
                 .put(`/user`)
                 .send(MOCK_NEW_PARENT_DATA)
+                .set('Authorization', token)
                 .expect(200)
                 .end((err, res) => {
                     req
                         .delete(`/user/${res.body.userId}`)
+                        .set('Authorization', token)
                         .expect(200)
                         .end((err, res) => {
                             req
                                 .get(`/user/${res.body.userId}`)
+                                .set('Authorization', token)
                                 .expect(404);
                         });
                 });

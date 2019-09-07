@@ -15,14 +15,16 @@ export default describe('postCalendarGoing route', () => {
             .expect(401));
 
     it('should edit user calendar going info', () =>
-        createAuthenticatedRequest((req: SuperTest<Test>) => {
+        createAuthenticatedRequest(request(app), (req: SuperTest<Test>, token: string) => {
             req
                 .post(`/calendar/going/${MOCK_FIRST_CHILD_ID}`)
                 .send(sendData)
+                .set('Authorization', token)
                 .expect(200)
                 .end(() => {
                     req
                         .get(`/calendar/going`)
+                        .set('Authorization', token)
                         .expect(200)
                         .expect(expectedData);
                 });

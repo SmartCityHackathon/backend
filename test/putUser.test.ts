@@ -15,36 +15,41 @@ export default describe('putUser route', () => {
             .expect(401));
 
     it('should add and edit teacher user', () =>
-        createAuthenticatedRequestAdmin((req: SuperTest<Test>) => {
+        createAuthenticatedRequestAdmin(request(app), (req: SuperTest<Test>, token: string) => {
             req
                 .put(`/user`)
                 .send(MOCK_NEW_TEACHER_DATA)
+                .set('Authorization', token)
                 .expect(200)
                 .end((err, res) => {
                     req
                         .get(`/user/${res.body.userId}`)
+                        .set('Authorization', token)
                         .expect(200)
                         .expect(MOCK_NEW_TEACHER_DATA);
                 });
         }));
 
     it('should fail, because teacher cant create another teacher', () =>
-        createAuthenticatedRequestTeacher((req: SuperTest<Test>) => {
+        createAuthenticatedRequestTeacher(request(app), (req: SuperTest<Test>, token: string) => {
             req
                 .put(`/user`)
+                .set('Authorization', token)
                 .send(MOCK_NEW_TEACHER_DATA)
                 .expect(403);
         }));
 
     it('should add new parent user', () =>
-        createAuthenticatedRequestTeacher((req: SuperTest<Test>) => {
+        createAuthenticatedRequestTeacher(request(app), (req: SuperTest<Test>, token: string) => {
             req
                 .put(`/user`)
                 .send(MOCK_NEW_PARENT_DATA)
+                .set('Authorization', token)
                 .expect(200)
                 .end((err, res) => {
                     req
                         .get(`/user/${res.body.userId}`)
+                        .set('Authorization', token)
                         .expect(200)
                         .expect(MOCK_NEW_PARENT_DATA);
                 });
