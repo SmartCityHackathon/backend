@@ -28,6 +28,14 @@ export default describe('putUser route', () => {
                 });
         }));
 
+    it('should fail, because teacher cant create another teacher', () =>
+        createAuthenticatedRequestTeacher((req: SuperTest<Test>) => {
+            req
+                .put(`/user`)
+                .send(MOCK_NEW_TEACHER_DATA)
+                .expect(403);
+        }));
+
     it('should add new parent user', () =>
         createAuthenticatedRequestTeacher((req: SuperTest<Test>) => {
             req
