@@ -2,6 +2,7 @@ import * as request from 'supertest';
 import { SuperTest, Test } from 'supertest';
 import { app } from '../src/app';
 import { createAuthenticatedRequest } from './testUtils/createAuthenticatedRequest';
+import { MOCK_CLASS_ID } from '../src/mockData';
 
 export default describe('getUserInfo route', () => {
     it('should not get user info because of unauthorized', () =>
@@ -12,7 +13,7 @@ export default describe('getUserInfo route', () => {
     it('should get test parent user info', (done) =>
         createAuthenticatedRequest(request(app), (req: SuperTest<Test>, token: string) => {
             req
-                .get(`/class/`)
+                .get(`/class/${MOCK_CLASS_ID}`)
                 .set('Authorization', token)
                 .expect(200)
                 .expect(({ body }) => {
