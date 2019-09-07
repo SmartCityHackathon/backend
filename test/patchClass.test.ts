@@ -5,12 +5,7 @@ import {
     createAuthenticatedRequestAdmin,
     createAuthenticatedRequestTeacher,
 } from './testUtils/createAuthenticatedRequest';
-import {
-    MOCK_NEW_CLASS,
-    MOCK_NEW_PARENT_DATA,
-    MOCK_NEW_PARENT_DATA_EDIT_REQUEST,
-    MOCK_NEW_PARENT_DATA_EDITED,
-} from '../src/mockData';
+import { MOCK_NEW_CLASS } from '../src/mockData';
 
 export default describe('PatchClass route', () => {
     it('should not patch class because of unauthorized', () =>
@@ -69,37 +64,6 @@ export default describe('PatchClass route', () => {
                                 .get(`/user/${body.classId}`)
                                 .set('Authorization', token)
                                 .expect({ ...MOCK_NEW_CLASS, classId: body.classId, name: 'Klacek' })
-                                .end(done);
-                        });
-                });
-        }));
-
-    it('should edit new parent user', (done) =>
-        createAuthenticatedRequestTeacher(request(app), (req: SuperTest<Test>, token: string) => {
-            req
-                .put(`/user`)
-                .send(MOCK_NEW_PARENT_DATA)
-                .set('Authorization', token)
-                .expect(200)
-                .end((err, res) => {
-                    if (err) {
-                        done(err);
-                        return;
-                    }
-                    req
-                        .patch(`/user/${res.body.userId}`)
-                        .send(MOCK_NEW_PARENT_DATA_EDIT_REQUEST)
-                        .set('Authorization', token)
-                        .expect(200)
-                        .end((err, res) => {
-                            if (err) {
-                                done(err);
-                                return;
-                            }
-                            req
-                                .get(`/user/${res.body.userId}`)
-                                .set('Authorization', token)
-                                .expect(MOCK_NEW_PARENT_DATA_EDITED)
                                 .end(done);
                         });
                 });
