@@ -5,7 +5,7 @@ import {
     createAuthenticatedRequestAdmin,
     createAuthenticatedRequestTeacher,
 } from './testUtils/createAuthenticatedRequest';
-import { MOCK_NEW_CHILD, MOCK_NEW_PARENT_DATA } from '../src/mockData';
+import { MOCK_NEW_CHILD } from '../src/mockData';
 
 export default describe('PatchChild route', () => {
     it('should not patch child because of unauthorized', () =>
@@ -72,7 +72,7 @@ export default describe('PatchChild route', () => {
         createAuthenticatedRequestTeacher(request(app), (req: SuperTest<Test>, token: string) => {
             req
                 .put(`/child`)
-                .send(MOCK_NEW_PARENT_DATA)
+                .send(MOCK_NEW_CHILD)
                 .set('Authorization', token)
                 .expect(200)
                 .end((err, res) => {
