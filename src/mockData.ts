@@ -1,11 +1,11 @@
-export const MOCK_PARENT_USERNAME = 'parent_kadibudka';
-export const MOCK_PARENT_PASSWORD = 'parent_passw0rd!';
-export const MOCK_PARENT_FULLNAME = 'parent_kadibudka';
+export const MOCK_PARENT_USERNAME = 'parent_kadibudka3';
+export const MOCK_PARENT_PASSWORD = 'parent_passw0rd!3';
+export const MOCK_PARENT_FULLNAME = 'Nejlepší Standa';
 export const MOCK_PARENT_EMAIL = 'parent_kadibudkas@email.cz';
-export const MOCK_PARENT_KIDS = ['Matěj Obecný', 'Eliška'];
 
 export const MOCK_FIRST_CHILD_ID = '1f9a9-46a8c';
 export const MOCK_SECOND_CHILD_ID = 'ac5e2-c4a8f';
+export const MOCK_PARENT_CHILDREN = [MOCK_FIRST_CHILD_ID, MOCK_SECOND_CHILD_ID];
 
 function generateDays(pseudoSeed: number) {
     const days = [];
@@ -30,8 +30,8 @@ export const MOCK_PARENT_CHILDREN_CALENDAR_2019_09 = [
         days: generateDays(4),
     },
 ];
-export const MOCK_PARENT_NONEXISTING_USERNAME = 'parent_kadibudka';
-export const MOCK_PARENT_NONEXISTING_PASSWORD = 'parent_passw0rd!';
+export const MOCK_PARENT_NONEXISTING_USERNAME = 'parent_kadibudka_non';
+export const MOCK_PARENT_NONEXISTING_PASSWORD = 'parent_passw0rd!-on';
 export const MOCK_CHANGE_NEW_PASSWORD = 'parent_new_passw0rd!';
 
 export const MOCK_TEACHER_USERNAME = 'parent_kadibudka';

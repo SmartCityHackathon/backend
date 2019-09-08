@@ -5,6 +5,7 @@ import * as express from 'express';
 import { expressLogger } from './utils/logger';
 import { aboutRouteHandler } from './routes/about';
 import { ahojRouteHandler } from './routes/ahoj';
+import { loginRouteHandler } from './routes/login';
 
 export const app = createApp();
 
@@ -21,7 +22,7 @@ export function createApp(): express.Express {
     app.get(['/', '/about'], aboutRouteHandler);
 
     app.get('/ahoj', ahojRouteHandler);
-    // app.post('/user/login', testTokenHandler);
+    app.post('/user/login', loginRouteHandler);
     // app.post('/user/change-password', ahojRouteHandler);
 
     return app;

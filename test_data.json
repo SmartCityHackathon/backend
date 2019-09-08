@@ -1,0 +1,13 @@
+{
+  "users": [
+    {
+      "type": "teacher",
+      "password": "parent_passw0rd",
+      "userId": "Test-Teacher-User-uuid-Id",
+      "email": "parent_kadibudka",
+      "fullname": "Nejlepší Standa"
+    }
+  ],
+  "children": [],
+  "classes": []
+}
