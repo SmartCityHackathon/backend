@@ -5,9 +5,10 @@ import { createAuthenticatedRequest } from './testUtils/createAuthenticatedReque
 import { MOCK_FIRST_CHILD_ID, MOCK_PARENT_CHILDREN_CALENDAR_2019_09 } from '../src/mockData';
 
 export default describe('postCalendarGoing route', () => {
-    const sendData = { '2019-09-07': true };
+    const sendData = { going: { '2019-09-03': false, '2019-09-07': true } };
     const expectedData = MOCK_PARENT_CHILDREN_CALENDAR_2019_09;
-    expectedData[0].going[6].value = true;
+    expectedData[0].going['2019-09-03'] = false;
+    expectedData[0].going['2019-09-07'] = true;
 
     it('should not post user calendar because of unauthorized', () =>
         request(app)
@@ -30,7 +31,9 @@ export default describe('postCalendarGoing route', () => {
                         .get(`/calendar/going`)
                         .set('Authorization', token)
                         .expect(200)
-                        .expect(expectedData)
+                        .expect({
+                            children: expectedData,
+                        })
                         .end(done);
                 });
         }));

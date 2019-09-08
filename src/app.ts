@@ -7,6 +7,7 @@ import { aboutRouteHandler } from './routes/about';
 import { ahojRouteHandler } from './routes/ahoj';
 import { loginRouteHandler } from './routes/login';
 import { getCalendarRouteHandler } from './routes/getCalendar';
+import { postCalendarRouteHandler } from './routes/postCalendar';
 
 export const app = createApp();
 
@@ -26,6 +27,7 @@ export function createApp(): express.Express {
     app.post('/user/login', loginRouteHandler);
 
     app.get('/calendar/going', getCalendarRouteHandler);
+    app.post('/calendar/going/:childId', postCalendarRouteHandler);
 
     return app;
 }

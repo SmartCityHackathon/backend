@@ -17,14 +17,16 @@ function generateDays(pseudoSeed: number) {
 
 export const MOCK_PARENT_CHILDREN_CALENDAR_2019_09 = [
     {
-        fullname: 'Matěj Obecný',
+        fullname: 'Patrik Obecný',
         childId: MOCK_FIRST_CHILD_ID,
-        days: generateDays(3),
+        'class': '3h',
+        going: generateDays(3),
     },
     {
         fullname: 'Eliška',
         childId: MOCK_SECOND_CHILD_ID,
-        days: generateDays(4),
+        'class': '1g',
+        going: generateDays(4),
     },
 ];
 export const MOCK_PARENT_NONEXISTING_USERNAME = 'parent_kadibudka_non';
