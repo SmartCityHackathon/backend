@@ -2,7 +2,7 @@ import * as request from 'supertest';
 import { SuperTest, Test } from 'supertest';
 import { app } from '../src/app';
 import { createAuthenticatedRequest } from './testUtils/createAuthenticatedRequest';
-import { MOCK_PARENT_EMAIL, MOCK_PARENT_FULLNAME, MOCK_PARENT_KIDS } from '../src/mockData';
+import { MOCK_PARENT_CHILDREN, MOCK_PARENT_EMAIL, MOCK_PARENT_FULLNAME } from '../src/mockData';
 
 export default describe('getUserInfo route', () => {
     it('should not get user info because of unauthorized', () =>
@@ -19,7 +19,7 @@ export default describe('getUserInfo route', () => {
                 .expect({
                     fullname: MOCK_PARENT_FULLNAME,
                     email: MOCK_PARENT_EMAIL,
-                    kids: MOCK_PARENT_KIDS,
+                    children: MOCK_PARENT_CHILDREN,
                     type: 'parent',
                 })
                 .end(done);

@@ -18,7 +18,7 @@ function generateDays(pseudoSeed: number) {
     return days;
 }
 
-export const MOCK_PARENT_KIDS_CALENDAR_2019_09 = [
+export const MOCK_PARENT_CHILDREN_CALENDAR_2019_09 = [
     {
         fullname: 'Matěj Obecný',
         childId: MOCK_FIRST_CHILD_ID,
@@ -49,7 +49,7 @@ export const MOCK_NEW_PARENT_DATA = {
     fullname: 'Anina Čudáková',
     email: 'cudakova@sitmp.cz',
     type: 'parent',
-    kids: [],
+    children: [],
 };
 
 export const MOCK_NEW_TEACHER_DATA_EDIT_REQUEST = {
@@ -59,7 +59,7 @@ export const MOCK_NEW_TEACHER_DATA_EDIT_REQUEST = {
 export const MOCK_NEW_PARENT_DATA_EDIT_REQUEST = {
     fullname: 'This Time Large Teacher',
     email: 'largeteacher@email.cz',
-    kids: ['Tonda'],
+    children: ['Tonda'],
 };
 export const MOCK_NEW_TEACHER_DATA_EDITED = {
     ...MOCK_NEW_TEACHER_DATA,
