@@ -3,6 +3,7 @@ import * as fs from 'fs';
 import { User } from './structure/User';
 import { Child } from './structure/Child';
 import { Class } from './structure/Class';
+import { parseJsonBody, prettyJson } from './CustomUtils';
 
 export class Storage {
     users: User[];
@@ -23,7 +24,7 @@ export class JsonStorage {
     load(): Storage {
         let storage = new Storage({});
         try {
-            storage = new Storage(JSON.parse(fs.readFileSync(this.filename).toString()));
+            storage = new Storage(parseJsonBody(fs.readFileSync(this.filename).toString()));
         } catch (e) {
             this.save(storage);
         }
@@ -31,7 +32,7 @@ export class JsonStorage {
     }
 
     save(data: Storage): void {
-        fs.writeFileSync(this.filename, JSON.stringify(data, null, 2));
+        fs.writeFileSync(this.filename, prettyJson(data));
     }
 }
 

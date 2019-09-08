@@ -6,6 +6,7 @@ import { expressLogger } from './utils/logger';
 import { aboutRouteHandler } from './routes/about';
 import { ahojRouteHandler } from './routes/ahoj';
 import { loginRouteHandler } from './routes/login';
+import { getCalendarRouteHandler } from './routes/getCalendar';
 
 export const app = createApp();
 
@@ -20,10 +21,11 @@ export function createApp(): express.Express {
     app.use(express.static(path.join(__dirname, '..', 'static')));
 
     app.get(['/', '/about'], aboutRouteHandler);
-
     app.get('/ahoj', ahojRouteHandler);
+
     app.post('/user/login', loginRouteHandler);
-    // app.post('/user/change-password', ahojRouteHandler);
+
+    app.get('/calendar/going', getCalendarRouteHandler);
 
     return app;
 }

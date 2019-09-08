@@ -8,12 +8,9 @@ export const MOCK_SECOND_CHILD_ID = 'ac5e2-c4a8f';
 export const MOCK_PARENT_CHILDREN = [MOCK_FIRST_CHILD_ID, MOCK_SECOND_CHILD_ID];
 
 function generateDays(pseudoSeed: number) {
-    const days = [];
+    const days = {};
     for (let i = 1; i <= 30; i++) {
-        days.push({
-            date: `2019-09-${i.toString().padStart(2, '0')}`,
-            value: (i % pseudoSeed === 0),
-        });
+        days[`2019-09-${i.toString().padStart(2, '0')}`] = (i % pseudoSeed === 0);
     }
     return days;
 }

@@ -3,4 +3,5 @@ export class Child {
     fullname: string = '';
     parentId: string = '';
     class: string = '';
+    going: {} = {};
 }
