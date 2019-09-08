@@ -10,8 +10,9 @@
     "server": "ts-node -P ./tsconfig.json -r dotenv/config src/index.ts",
     "server-watch": "onchange -i \"./src/**/*.{ts,tsx,json}\" -- npm run server",
     "expose": "lt --port 3000 --subdomain student-dreamers-oriflameServer-v1",
-    "test": "jest --runInBand --setupFiles dotenv/config",
-    "test-watch": "npm run test -- --watch"
+    "test": "npm run test-clear-cache; jest --runInBand --setupFiles dotenv/config",
+    "test-watch": "npm run test -- --watch",
+    "test-clear-cache": "jest --clearCache"
   },
   "dependencies": {
     "@types/cors": "^2.8.5",
