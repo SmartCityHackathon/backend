@@ -18,10 +18,9 @@ export const getCalendarRouteHandler: RequestHandler = async (req, res, next) =>
             const childrenIds: string[] = user.children;
 
             const children: Child[] = storage.children.filter(child => arrayContains(childrenIds, child.childId));
-            console.log(children);
 
             return res.status(200).json({
-                children: children.map(child => child.going),
+                children,
             });
         } else {
             return res.status(401).json({ error: 'SomeError', where: 'down' });

@@ -2,12 +2,35 @@
   "users": [
     {
       "type": "teacher",
-      "password": "parent_passw0rd",
+      "password": "parent_passw0rd!3",
       "userId": "Test-Teacher-User-uuid-Id",
-      "email": "parent_kadibudka",
-      "fullname": "Nejlepší Standa"
+      "email": "parent_kadibudka3",
+      "fullname": "Nejlepší Standa",
+      "children": [
+        "1f9a9-46a8c",
+        "ac5e2-c4a8f"
+      ]
     }
   ],
-  "children": [],
+  "children": [
+    {
+      "fullname": "Patrik Obecný",
+      "childId": "1f9a9-46a8c",
+      "class": "3h",
+      "going": {
+        "2019-09-11": false,
+        "2019-09-12": true
+      }
+    },
+    {
+      "fullname": "Eliška",
+      "childId": "ac5e2-c4a8f",
+      "class": "1g",
+      "going": {
+        "2019-09-01": true,
+        "2019-10-22": false
+      }
+    }
+  ],
   "classes": []
 }

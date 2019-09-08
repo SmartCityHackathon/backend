@@ -7,7 +7,7 @@ import { MOCK_FIRST_CHILD_ID, MOCK_PARENT_CHILDREN_CALENDAR_2019_09 } from '../s
 export default describe('postCalendarGoing route', () => {
     const sendData = { '2019-09-07': true };
     const expectedData = MOCK_PARENT_CHILDREN_CALENDAR_2019_09;
-    expectedData[0].days[6].value = true;
+    expectedData[0].going[6].value = true;
 
     it('should not post user calendar because of unauthorized', () =>
         request(app)
