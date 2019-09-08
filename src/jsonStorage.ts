@@ -1,14 +1,37 @@
+'use strict';
 import * as fs from 'fs';
+import { User } from './structure/User';
+import { Child } from './structure/Child';
+import { Class } from './structure/Class';
+
+export class Storage {
+    users: User[];
+    children: Child[];
+    classes: Class[];
+
+    constructor(obj: any) {
+        this.users = obj.users || [];
+        this.children = obj.children || [];
+        this.classes = obj.classes || [];
+    }
+}
 
 export class JsonStorage {
-    static filename: string = 'data.json';
+    filename: string = 'data.json';
+    sessions: {} = {};
 
-    static load() {
-        return fs.readFileSync(this.filename).toJSON().data;
+    load(): Storage {
+        let storage = new Storage({});
+        try {
+            storage = new Storage(JSON.parse(fs.readFileSync(this.filename).toString()));
+        } catch (e) {
+            this.save(storage);
+        }
+        return storage;
     }
 
-    static save(data: any[]) {
-        fs.writeFileSync(this.filename, data);
+    save(data: Storage): void {
+        fs.writeFileSync(this.filename, JSON.stringify(data, null, 2));
     }
 }
 
